@@ -4,7 +4,6 @@
       <v-layout row wrap>
       	<div class="crossword-cell" v-for="i in 24">{{ '&nbsp' }}</div>
       	<v-btn @click="createNewCrossword"></v-btn>
-      </v-layout>
     </v-slide-y-transition>
   </v-container>
 </template>      
