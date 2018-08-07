@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/Auth/Login'
 import Dashboard from '@/pages/Dashboard/Dashboard.vue'
-import DeviceDashbord from '@/pages/Dashboard/DeviceDashbord.vue'
+import Editor from '@/pages/Editor/Editor.vue'
 
 Vue.use(Router)
 const authRoutes = [
@@ -12,27 +12,18 @@ const authRoutes = [
 const privateRoutes = [
   {
     path: '/',
-    redirect: '/device-dashbord',
-    name: 'Home',
-    component: DeviceDashbord,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
-    path: '/device-dashbord',
-    name: 'Devices Dashbord',
-    component: DeviceDashbord,
+    path: '/editor',
+    name: 'Crossword Editor',
+    component: Editor,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   }
 ]

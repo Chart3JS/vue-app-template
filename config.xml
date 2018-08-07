@@ -2,8 +2,8 @@
 <widget android-versionCode="1" id="com.lightapp.edge" ios-CFBundleVersion="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Lightapp</name>
     <description>Lightapp Mobile App</description>
-    <author email="alex@lightapp.com" href="lightapp.com">
-        Apache Cordova Team
+    <author email="jprjdev@gmail.com" href="alisa-music.com">
+        Alexander Plotkin
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
@@ -22,5 +22,6 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <engine name="android" spec="^7.1.1" />
 </widget>

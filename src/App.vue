@@ -1,78 +1,56 @@
 <template>
-  <v-app light>
-    <settings-dialog></settings-dialog>
+  <v-app id="crossword">
     <v-navigation-drawer
-      fixed
-      :mini-variant="miniVariant"
-      :clipped="clipped"
       v-model="drawer"
-      v-show="isLoggedIn"
+      fixed
       app
     >
-      <v-list v-show="isLoggedIn">
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-          exact
-        >
+      <v-list dense>
+        <v-list-tile @click="">
           <v-list-tile-action>
-            <v-icon light v-html="item.icon"></v-icon>
+            <v-icon>home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
+            <v-list-tile-title>Home</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile @click="">
+          <v-list-tile-action>
+            <v-icon>contact_mail</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Contact</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon v-show="isLoggedIn" @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title" color="#01579B"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-badge color="red" left style="margin: 6px 0 0 0;">
-        <span sm slot="badge">2</span>
-        <v-icon
-          medium
-          color="#428bca"
-        >
-          notification_important
-        </v-icon>
-      </v-badge>
-      <v-icon
-        medium
-        color="#428bca"
-        @click="showSettings"
-      >
-        settings
-      </v-icon>
+    <v-toolbar color="indigo" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Application</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <router-view></router-view>
+      <v-container fluid fill-height pt-2>
+        <router-view></router-view>
+      </v-container>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-    >
-    <v-spacer></v-spacer>
-    <v-divider dark></v-divider>  
-    </v-navigation-drawer>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2017</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
   import Vue from 'vue'
-  import SettingsDialog from '@/components/Settings.vue'
   export default {
-    components: {
-      SettingsDialog
+    components: {},
+    props: {
+      source: String
     },
     data () {
       return {
         cordova: Vue.cordova,
         clipped: false,
-        drawer: false,
+        drawer: null,
         items: [
           {
             icon: 'bubble_chart',
@@ -91,6 +69,7 @@
       var self = this
       this.cordova.on('deviceready', () => {
         self.onDeviceReady()
+        screen.orientation.lock('landscape')
       })
     },
     methods: {
@@ -100,6 +79,7 @@
         this.cordova.on('resume', this.onResume, false)
         if (this.cordova.device.platform === 'Android') {
           document.addEventListener('backbutton', this.onBackKeyDown, false)
+          alert(window.screen.orientation)
         }
       },
       onPause () {
@@ -129,7 +109,7 @@
     padding-top: constant(safe-area-inset-top);
     padding-top: env(safe-area-inset-top);
 	}
-  .footer{ /* Apply this to v-bottom-nav if necessary. */
+  .footer{  Apply this to v-bottom-nav if necessary. 
     margin-bottom: constant(safe-area-inset-bottom);
     margin-bottom: env(safe-area-inset-bottom);
   }
